@@ -8,6 +8,9 @@
 
     <ItemGroup>
       <Compile Remove="Class1.cs" />
+      <Compile Remove="Repositories\ICategoryReadOnly.cs" />
+      <Compile Remove="Repositories\ContributorProjectAssignment\IContributorProjectAssignmentUpdateOnlyRepository.cs" />
+      <Compile Remove="Repositories\ContributorCategoryInterest\IContributorCategoryInterestUpdateOnlyRepository.cs" />
     </ItemGroup>
 
 </Project>

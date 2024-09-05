@@ -1,7 +1,12 @@
+using CentralDasOngs.Infrastructure;
+using CentralDasOngs.Infrastructure.Extensions;
+using CentralDasOngs.Infrastructure.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
@@ -24,4 +29,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+MigrateDatabase();
 app.Run();
+
+void MigrateDatabase()
+{
+    var connectionString = builder.Configuration.ConnectionString();
+
+    var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    DataBaseMigration.Migrate(connectionString, serviceScope.ServiceProvider);
+}

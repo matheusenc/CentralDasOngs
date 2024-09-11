@@ -1,6 +1,7 @@
 namespace CentralDasOngs.Domain.Repositories.Category;
 
-public interface IReadOnlyCategoryRepository
+public interface ICategoryReadOnlyRepository
 {
-    Task<List<Entities.Category>> GetAll();
+    Task<List<Entities.Category>> GetAll(CancellationToken cancellationToken);
+    Task<Entities.Category?> GetById(long categoryId, CancellationToken cancellationToken);
 }

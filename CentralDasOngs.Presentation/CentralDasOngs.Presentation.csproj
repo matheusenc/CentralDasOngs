@@ -7,7 +7,21 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CentralDasOngs.Application\CentralDasOngs.Application.csproj" />
       <ProjectReference Include="..\CentralDasOngs.Infrastructure\CentralDasOngs.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Views\Home\Privacy.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Controllers\ControllerBase.cs" />
+      <Compile Remove="Controllers\ProjectController.cs" />
     </ItemGroup>
 
 </Project>

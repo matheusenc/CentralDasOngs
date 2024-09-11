@@ -1,3 +1,4 @@
+using CentralDasOngs.Application;
 using CentralDasOngs.Infrastructure;
 using CentralDasOngs.Infrastructure.Extensions;
 using CentralDasOngs.Infrastructure.Migrations;
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication(builder.Configuration);
 
 var app = builder.Build();
 

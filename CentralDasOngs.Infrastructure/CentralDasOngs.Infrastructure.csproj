@@ -11,10 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DataAccess\Repositories\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\CentralDasOngs.Domain\CentralDasOngs.Domain.csproj" />
     </ItemGroup>
 

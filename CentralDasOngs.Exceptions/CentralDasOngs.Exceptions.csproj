@@ -7,6 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="NovaPasta\**" />
+      <EmbeddedResource Remove="NovaPasta\**" />
+      <None Remove="NovaPasta\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Remove="Class1.cs" />
     </ItemGroup>
 
@@ -20,7 +26,7 @@
 
     <ItemGroup>
       <EmbeddedResource Update="ResourceMessagesError.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
+        <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>ResourceMessagesError.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>

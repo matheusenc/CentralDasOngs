@@ -1,6 +1,7 @@
 using System.Reflection;
 using CentralDasOngs.Domain.Repositories;
 using CentralDasOngs.Domain.Repositories.Category;
+using CentralDasOngs.Domain.Repositories.Contributor;
 using CentralDasOngs.Infrastructure.DataAccess;
 using CentralDasOngs.Infrastructure.DataAccess.Repositories;
 using CentralDasOngs.Infrastructure.Extensions;
@@ -30,6 +31,9 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICategoryReadOnlyRepository, CategoryRepository>();
+        services.AddScoped<IContributorUpdateRepository, ContributorRepository>();
+        services.AddScoped<IContributorReadOnlyRepository, ContributorRepository>();
+        services.AddScoped<IContributorWriteOnlyRepository, ContributorRepository>();
     }
 
     private static void AddFluentMigrator(IServiceCollection services, IConfiguration configuration)

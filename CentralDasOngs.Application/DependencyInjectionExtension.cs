@@ -1,6 +1,7 @@
 using CentralDasOngs.Application.Services.AutoMapper;
 using CentralDasOngs.Application.UseCase.Category.GetAll;
 using CentralDasOngs.Application.UseCase.Category.GetById;
+using CentralDasOngs.Application.UseCase.Contributor.Register;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sqids;
@@ -40,6 +41,6 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
         services.AddScoped<IGetAllCateogoriesUseCase, GetAllCategoriesUseCase>();
-        
+        services.AddScoped<IRegisterContributorUseCase, RegisterContributorUseCase>();
     }
 }

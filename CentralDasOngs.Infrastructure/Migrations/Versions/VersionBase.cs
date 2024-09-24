@@ -1,5 +1,6 @@
 using FluentMigrator;
 using FluentMigrator.Builders.Create.Table;
+using System.Data;
 
 namespace CentralDasOngs.Infrastructure.Migrations.Versions;
 
@@ -16,11 +17,12 @@ public abstract class VersionBase : ForwardOnlyMigration
     protected ICreateTableColumnOptionOrWithColumnSyntax CreateUserTable(string tableName, string userType)
     {
         return CreateTable(tableName)
-            .WithColumn("Name").AsString().NotNullable()
-            .WithColumn("Email").AsString().NotNullable()
-            .WithColumn("Password").AsString().NotNullable()
-            .WithColumn("Description").AsString().NotNullable()
-            .WithColumn("ImageIdentifier").AsString().NotNullable()
-            .WithColumn("AddressId").AsInt64().NotNullable().ForeignKey($"FK_{userType}_Address_Id", "Addresses", "Id");
+            .WithColumn("Name").AsString(100).NotNullable()
+            .WithColumn("Email").AsString(254).NotNullable()
+            .WithColumn("Password").AsString(200).NotNullable()
+            .WithColumn("Description").AsString(1000).Nullable()
+            .WithColumn("ImageIdentifier").AsString(255).Nullable()
+            .WithColumn("AddressId").AsInt64().NotNullable().ForeignKey($"FK_{userType}_Address_Id", "Addresses", "Id")
+            .OnDelete(Rule.Cascade);
     }
 }

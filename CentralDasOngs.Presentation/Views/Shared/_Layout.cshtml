@@ -29,7 +29,7 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sou uma ONG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sou um voluntário</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Contributor" asp-action="Login">Sou um voluntário</a>
                     </li>
                 </ul>
             </div>
@@ -37,8 +37,8 @@
         </div>
     </nav>
 </header>
-<div class="container">
-    <main role="main" class="pb-3">
+<div class="container mt-5">
+    <main role="main" class="pb-3" style="margin-top: 100px;">
         @RenderBody()
     </main>
 </div>

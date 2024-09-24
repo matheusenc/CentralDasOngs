@@ -35,6 +35,6 @@ public class ContributorController : Controller
             return View(model);
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Login");
     }
 }

@@ -3,7 +3,9 @@ using CentralDasOngs.Communication.Requests;
 using CentralDasOngs.Domain.Repositories;
 using CentralDasOngs.Domain.Repositories.Contributor;
 using CentralDasOngs.Exceptions;
+using CentralDasOngs.Exceptions.Exceptions.ValidationError;
 using FluentValidation.Results;
+using System.Diagnostics.Contracts;
 
 namespace CentralDasOngs.Application.UseCase.Contributor.Register;
 
@@ -22,7 +24,7 @@ public class RegisterContributorUseCase : IRegisterContributorUseCase
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<List<string>> Execute(RequestRegisterContributorModel model)
+    public async Task<List<ValidationError>> Execute(RequestRegisterContributorModel model)
     {
         var errorList = await Validate(model);
         if(errorList.Count != 0)
@@ -35,19 +37,23 @@ public class RegisterContributorUseCase : IRegisterContributorUseCase
         return errorList;
     }
 
-    private async Task<List<string>> Validate(RequestRegisterContributorModel model)
+    private async Task<List<ValidationError>> Validate(RequestRegisterContributorModel model)
     {
         var validator = new RegisterContributorValidator();
         var result = await validator.ValidateAsync(model);
         var emailExist = await _readOnlyRepository.ExistActiveUserWithEmail(model.Email);
         if (emailExist) 
         {
-            result.Errors.Add(new ValidationFailure(string.Empty, ResourceMessagesError.EMAIL_JA_CADASTRADO));
+            result.Errors.Add(new ValidationFailure(nameof(model.Email), ResourceMessagesError.EMAIL_JA_CADASTRADO));
         }
 
         if(result.IsValid) return [];
 
-        var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+        var errorMessages = result.Errors.Select(e => new ValidationError
+        {
+            PropertyName = e.PropertyName,
+            ErrorMessage = e.ErrorMessage
+        }).ToList();
         return errorMessages;
     }
 }
